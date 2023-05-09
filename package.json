@@ -1,0 +1,22 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "Basic react app",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abnave/namaste-react-sa.git"
+  },
+  "author": "Shubham Abnave",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abnave/namaste-react-sa/issues"
+  },
+  "homepage": "https://github.com/abnave/namaste-react-sa#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
