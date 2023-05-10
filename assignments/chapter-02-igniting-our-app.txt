@@ -1,0 +1,6 @@
+1. What is 'NPM'?
+- NPM is everything but Node Package Manager (ha ha)
+- a tool to install and manage dependencies for node.js projects 
+
+
+2. What is Parcel/Webpack
