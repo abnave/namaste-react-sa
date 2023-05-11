@@ -4,3 +4,12 @@
 
 
 2. What is Parcel/Webpack
+
+3. What is Tree shaking"
+- remove unused code from packages/libraries
+
+4. What is Hot Module replacement?
+ HMR improvise develpment experience by updating modules in the browser at runtime without needed a whole page refersh.
+
+5. Difference between package.json and package-lock.json
+package-lock.json holds detailed information on all dependencies installed based on package.json
