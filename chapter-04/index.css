@@ -38,6 +38,10 @@
 
 
 /* Body CSS */
+.btn-01{
+    padding: auto;
+    margin: 5px;
+}
 
 .rest-container{
     width: auto;
