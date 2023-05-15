@@ -7,7 +7,14 @@ const BodyComponent = () => {
   const [listOfRestaurant, setlistOfRestaurant] = useState(restList);
   return (
     <div className="body-container">
-      <div className="search-container"></div>
+      <div className="search-container">
+        <input type="text" placeholder="Search restaurant" onChange={(event)=>{
+          const inputValue = event.target.value;
+          const filteredRestList = restList.filter(rest=> rest?.info?.name.includes(inputValue));
+          setlistOfRestaurant(filteredRestList);
+        }}/>
+        
+      </div>
       <div className="btn-container">
         <button className="btn-01" onClick = { ()=>{
           const filteredRestList = listOfRestaurant.filter(rest=> rest?.info?.avgRatingString > 4.2);
