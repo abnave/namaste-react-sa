@@ -10,7 +10,7 @@ const RestaurantCard = (props) => {
       <img className="rest-logo" src={CDN_URL + cloudinaryImageId}></img>
       <h2>{name}</h2>
 
-      <h4>{cuisines.join(", ")}</h4>
+      <h4>{(cuisines.length == 0 ? "" :cuisines.join(", "))}</h4>
 
       <span>
         <h4>{costForTwo}</h4>

@@ -1,28 +1,52 @@
-import restList from "../configs/sampleRestData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./Shimmer";
 
 const BodyComponent = () => {
   //useState returns array in which 1st element is your data and second is callback function to update to data
-  const [listOfRestaurant, setlistOfRestaurant] = useState(restList);
-  return (
+  const [allRestaurantList, setallRestaurantList] = useState([]);
+  const [filteredRestaurantList, setfilteredRestaurantList] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+
+  const filterData = (type, inputText, restaurantList)=>{
+    if(type == "search") return restaurantList.filter(rest=> rest?.info?.name.includes(inputText));
+    if(type == "rating") return restaurantList.filter(rest=> rest?.info?.avgRatingString > 4.2);
+  }
+  useEffect(()=>{
+    getAllRestaurants();
+  },[]);
+  
+  async function getAllRestaurants(){
+    const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=18.513463&lng=73.76985789999999");
+    const jsonData = await data.json();
+    const result = jsonData.data.success.cards[4].gridWidget.gridElements.infoWithStyle.restaurants;
+    //data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants
+    setallRestaurantList(result);
+    setfilteredRestaurantList(result);
+  }
+
+  return allRestaurantList.length == 0 ? <Shimmer /> :(
     <div className="body-container">
       <div className="search-container">
         <input type="text" placeholder="Search restaurant" onChange={(event)=>{
           const inputValue = event.target.value;
-          const filteredRestList = restList.filter(rest=> rest?.info?.name.includes(inputValue));
-          setlistOfRestaurant(filteredRestList);
+          setSearchInput(inputValue);
+          
         }}/>
+        <button onClick={()=>{
+          const filteredRestList = filterData("search", searchInput, allRestaurantList);
+          setfilteredRestaurantList(filteredRestList);
+        }}>Search</button>
         
       </div>
       <div className="btn-container">
         <button className="btn-01" onClick = { ()=>{
-          const filteredRestList = listOfRestaurant.filter(rest=> rest?.info?.avgRatingString > 4.2);
-          setlistOfRestaurant(filteredRestList);
+          const filteredRestList = filterData("rating","", allRestaurantList);
+          setfilteredRestaurantList(filteredRestList);
         }}>Top Rated Restaurants</button>
       </div>
       <div className="rest-container">
-        {listOfRestaurant.map((restaurant) => {
+        {filteredRestaurantList.map((restaurant) => {
           return (
             <RestaurantCard key={restaurant?.info?.id} restData={restaurant} />
           );
