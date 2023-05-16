@@ -15,11 +15,11 @@ const BodyComponent = () => {
   useEffect(()=>{
     getAllRestaurants();
   },[]);
-  
   async function getAllRestaurants(){
     const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=18.513463&lng=73.76985789999999");
     const jsonData = await data.json();
-    const result = jsonData.data.success.cards[4].gridWidget.gridElements.infoWithStyle.restaurants;
+    let result = [];
+    result = jsonData.data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants;
     //data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants
     setallRestaurantList(result);
     setfilteredRestaurantList(result);

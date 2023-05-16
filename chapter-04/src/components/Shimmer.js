@@ -14,13 +14,12 @@ const Shimmer = ()=>{
         }  
     }
     const emptyRestDataList = [];
-    for(let i=0;i<15;i++){
-        emptyRestData.info.index = i;
+    for(var i=0;i<15;i++){
         emptyRestDataList.push(emptyRestData);
     }
     return (<div className="rest-container">
     {emptyRestDataList.map((rest)=>{
-        return <RestaurantCard key={rest?.info?.id} restData={rest} />
+        return <RestaurantCard key={Math.floor(Math.random() * 1000)} restData={rest} />
     })}
   </div>)
 }
