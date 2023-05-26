@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { filterData, getAllRestaurants } from "../utils/helper";
 
 const BodyComponent = () => {
   //useState returns array in which 1st element is your data and second is callback function to update to data
@@ -9,22 +10,9 @@ const BodyComponent = () => {
   const [filteredRestaurantList, setfilteredRestaurantList] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
-  const filterData = (type, inputText, restaurantList)=>{
-    if(type == "search") return restaurantList.filter(rest=> rest?.info?.name.includes(inputText));
-    if(type == "rating") return restaurantList.filter(rest=> rest?.info?.avgRatingString > 4.2);
-  }
   useEffect(()=>{
-    getAllRestaurants();
+    getAllRestaurants(setallRestaurantList, setfilteredRestaurantList);
   },[]);
-  async function getAllRestaurants(){
-    const data = await fetch("https://www.swiggy.com/mapi/homepage/getCards?lat=18.513463&lng=73.76985789999999");
-    const jsonData = await data.json();
-    let result = [];
-    result = jsonData.data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants;
-    //data.success.cards[1].gridWidget.gridElements.infoWithStyle.restaurants
-    setallRestaurantList(result);
-    setfilteredRestaurantList(result);
-  }
 
   return allRestaurantList.length == 0 ? <Shimmer /> :(
     <div className="body-container">
