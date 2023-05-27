@@ -17,7 +17,7 @@ const Shimmer = ()=>{
     for(var i=0;i<15;i++){
         emptyRestDataList.push(emptyRestData);
     }
-    return (<div className="rest-container">
+    return (<div className="flex flex-wrap">
     {emptyRestDataList.map((rest)=>{
         return <RestaurantCard key={Math.floor(Math.random() * 1000)} restData={rest} />
     })}

@@ -6,9 +6,9 @@ const RestaurantCard = (props) => {
   const { deliveryTime } = restData?.info?.sla;
 
   return (
-    <div className="rest-card">
-      <img className="rest-logo" src={CDN_URL + cloudinaryImageId}></img>
-      <h2>{name}</h2>
+    <div className="w-56 p-2 m-2 shadow-lg bg-orange-100">
+      <img  src={CDN_URL + cloudinaryImageId}></img>
+      <h2 className="font-bold text-xl">{name}</h2>
 
       <h4>{(cuisines.length == 0 ? "" :cuisines.join(", "))}</h4>
 

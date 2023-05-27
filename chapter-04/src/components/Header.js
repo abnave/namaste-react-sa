@@ -4,17 +4,17 @@ import useOnline from "../utils/useOnline";
 const HeaderComponent = () => {
   const isOnline = useOnline();
   return (
-    <div className="header-container">
+    <div className="flex justify-between bg-orange-300 shadow-lg">
       <div className="logo-container">
-        <img className="logo" src={LOGO_URL}></img>
+        <img className="h-28 p-2" src={LOGO_URL}></img>
       </div>
-      <div className="nav-items">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About us </Link></li>
-          <li><Link to="/contact">Contact us </Link></li>
-          <li>Cart </li>
-          <li>{isOnline ? "🟩" : "🟥"}</li>
+      <div>
+        <ul className="flex py-2">
+          <li className="px-2"><Link to="/">Home</Link></li>
+          <li className="px-2"><Link to="/about">About us </Link></li>
+          <li className="px-2"><Link to="/contact">Contact us </Link></li>
+          <li className="px-2">Cart </li>
+          <li className="px-2">{isOnline ? "🟩" : "🟥"}</li>
         </ul>
       </div>
     </div>
